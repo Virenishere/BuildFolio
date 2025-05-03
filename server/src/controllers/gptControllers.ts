@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import dotenv from "dotenv";
-import { GoogleGenAI } from "@google/genai";
+import axios from "axios";
 import Resume from "../models/resumeModel";
 
 // AuthRequest type
@@ -20,15 +20,14 @@ interface ApiError {
   message: string;
 }
 
-dotenv.config();
-
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-
-if (!GEMINI_API_KEY) {
-  throw new Error("GEMINI_API_KEY is not defined in environment variables");
+// Add this interface for the Python API response
+interface PythonApiResponse {
+  generated_text: string;
 }
 
-const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
+dotenv.config();
+
+const PYTHON_API_URL = process.env.PYTHON_API_URL || "http://127.0.0.1:8000";
 
 export const gptController = {
   async enhanceResume(req: AuthRequest, res: Response, next: NextFunction): Promise<void> {
@@ -119,20 +118,12 @@ export const gptController = {
         Return ONLY the enhanced content, not the original.
       `;
 
-      const response = await ai.models.generateContent({
-        model: "gemini-2.0-flash",
-        contents: [
-          { 
-            role: "user", 
-            parts: [
-              { text: resumeData },
-              { text: instruction }
-            ] 
-          }
-        ]
+      // Call Python backend API using Axios with proper typing
+      const response = await axios.post<PythonApiResponse>(`${PYTHON_API_URL}/generate`, {
+        prompt: `${resumeData}\n\n${instruction}`
       });
 
-      const enhancedText = response.candidates?.[0]?.content?.parts?.[0]?.text || "No response generated";
+      const enhancedText = response.data.generated_text || "No response generated";
 
       res.status(200).json({
         success: true,
@@ -143,7 +134,7 @@ export const gptController = {
       });
     } catch (error: unknown) {
       const apiError = error as ApiError;
-      console.error("Gemini API error:", apiError.message);
+      console.error("API error:", apiError.message);
       res.status(500).json({
         success: false,
         message: "AI service error",
@@ -165,13 +156,12 @@ export const gptController = {
         Template style: ${template || "standard"}
         User prompt: ${prompt}`;
 
-      const response = await ai.models.generateContent({
-        model: "gemini-2.0-flash",
-        contents: [{ role: "user", parts: [{ text: inputText }] }]
+      // Call Python backend API using Axios with proper typing
+      const response = await axios.post<PythonApiResponse>(`${PYTHON_API_URL}/generate`, {
+        prompt: inputText
       });
 
-      // Extract the text content safely
-      const generatedContent = response.candidates?.[0]?.content?.parts?.[0]?.text || "No response generated";
+      const generatedContent = response.data.generated_text || "No response generated";
       const sections = this.parseGeneratedContent(generatedContent);
 
       res.status(200).json({
@@ -180,7 +170,7 @@ export const gptController = {
       });
     } catch (error: unknown) {
       const apiError = error as ApiError;
-      console.error("Gemini API error:", apiError.message);
+      console.error("API error:", apiError.message);
       res.status(500).json({
         success: false,
         message: "AI service error",
