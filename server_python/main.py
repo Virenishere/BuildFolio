@@ -10,7 +10,7 @@ load_dotenv()
 
 app = FastAPI()
 
-# Add CORS middleware to allow cross-origin requests
+# Add CORS middleware to allow cross-origin requests for permissions
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  
