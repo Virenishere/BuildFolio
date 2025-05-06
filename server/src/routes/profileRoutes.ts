@@ -3,7 +3,7 @@ import { profileController } from "../controllers/profileController";
 import { protect } from "../middleware/authMiddleware";
 import multer from "multer";
 
-const upload = multer({ storage: multer.memoryStorage() }); // Use in-memory storage
+const upload = multer({ storage: multer.memoryStorage() }); 
 
 const router = express.Router();
 

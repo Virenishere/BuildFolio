@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 
 // Extend Request interface to include Multer's file property
 interface MulterRequest extends Request {
-  file?: Express.Multer.File; // Multer file is optional
+  file?: Express.Multer.File; 
 }
 
 dotenv.config();
@@ -102,7 +102,7 @@ export const profileController = {
             resolve(result);
           }
         );
-        uploadStream.end(file.buffer); // Use the narrowed file variable
+        uploadStream.end(file.buffer); 
       });
 
       // Update profile with new image URL
