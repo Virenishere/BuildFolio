@@ -25,7 +25,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="relative z-10 flex justify-between items-center w-full mb-8">
+    <header className="relative z-10 flex justify-between items-center w-full mb-8 px-16">
       <div className="cursor-pointer">
         <Link to="/">
           <span className="text-5xl">
