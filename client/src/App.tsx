@@ -9,6 +9,8 @@ import Features from "./pages/Features";
 import AboutUs from "./pages/About";
 import PublicLayout from "./layouts/PublicLayout";
 import PrivateLayout from "./layouts/PrivateLayout";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
 
 const App = () => {
   return(
@@ -20,6 +22,8 @@ const App = () => {
       <Route path="/howitworks" element={<HowItWorks />} />
       <Route path="/features" element={<Features/>} />
       <Route path="/aboutus" element={<AboutUs />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/login" element={<Login />} />
       </Route>
 
       {/* private routes  */}

@@ -80,9 +80,11 @@ const Navbar = () => {
             </motion.div>
           </AnimatePresence>
         </Button>
+        <Link to="/signup">
         <Button className="bg-[var(--color-secondary-col)] hover:bg-[var(--color-secondary-col-hover)] w-36 h-12 cursor-pointer text-black font-semibold">
           Try Now <MoveUpRight />
         </Button>
+        </Link>
       </div>
     </header>
   );
