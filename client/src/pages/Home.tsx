@@ -1,4 +1,5 @@
 import Background from "../assets/transparenthomapage.svg"
+import bannerimgSVG from "../assets/bannerimg.svg"
 
 import { animate, motion, useMotionValue, useTransform } from "motion/react"
 import { useEffect, useState } from "react"
@@ -149,7 +150,7 @@ const Home = () => {
             <div className="relative w-full" style={{ height: "650px", maxWidth: "500px" }}>
               {/* Main image */}
               <motion.img
-                src="https://images.pexels.com/photos/31965829/pexels-photo-31965829/free-photo-of-close-up-of-a-vintage-style-camera-with-red-strap.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                src={bannerimgSVG}
                 alt="Resume showcase"
                 className="rounded-2xl shadow-2xl object-cover w-full h-full"
                 initial={{ filter: "brightness(0.8)" }}

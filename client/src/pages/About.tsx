@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { motion, useAnimationControls, useInView } from "framer-motion";
-import { ArrowRight, Users, Award, Heart, Code } from "lucide-react";
+import { Users, Award, Heart, Code } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
 // Animation variants
