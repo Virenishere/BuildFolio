@@ -1,9 +1,11 @@
+import LoadingSpinner from "@/components/LoadingSpinner";
 import React from "react";
 
 const Login = () => {
     return(
         <div>
-            Login Page            
+            Login Page 
+            <LoadingSpinner/>           
         </div>
     )
 }
