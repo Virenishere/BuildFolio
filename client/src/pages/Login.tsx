@@ -20,6 +20,7 @@ export function Login() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-background p-4">
+      {/* tab */}
       <Tabs defaultValue="login" className="w-full max-w-md" onValueChange={setActiveTab}>
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="login">Login</TabsTrigger>
@@ -29,7 +30,7 @@ export function Login() {
           <Card>
             <CardHeader>
               <CardTitle>Login</CardTitle>
-              <CardDescription>Enter your email and password to access your account</CardDescription>
+              <CardDescription>Enter your email and password to access your account</CardDescription> 
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
