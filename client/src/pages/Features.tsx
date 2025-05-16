@@ -1,16 +1,10 @@
-
 import { useEffect, useRef } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
-import {
-  ArrowRight,
-  Globe,
-  Shield,
-  Sparkles,
-} from "lucide-react";
-import resumebenefitSVG from "../assets/resumebenefit.svg"
+import { ArrowRight, Globe, Shield, Sparkles } from "lucide-react";
+import resumebenefitSVG from "../assets/resumebenefit.svg";
 
 const Features = () => {
-    const benefitsRef = useRef(null);
+  const benefitsRef = useRef(null);
   const benefitsInView = useInView(benefitsRef, {
     triggerOnce: false,
     threshold: 0.1,
@@ -61,7 +55,9 @@ const Features = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-5xl sm:text-6xl md:text-7xl font-medium mt-16 md:mt-24 text-center"
         >
-          Why Choose  About <span className="text-[var(--color-primary-col)]">Build</span><span className="text-[var(--color-secondary-col)]">Folio</span>
+          Why Choose About{" "}
+          <span className="text-[var(--color-primary-col)]">Build</span>
+          <span className="text-[var(--color-secondary-col)]">Folio</span>
         </motion.h1>
 
         <motion.p
@@ -70,7 +66,8 @@ const Features = () => {
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           className="font-medium text-xl sm:text-xl md:text-2xl text-gray-600 dark:text-gray-300 mt-8 max-w-3xl mx-auto text-center"
         >
-          Discover how BuildFolio transforms the way you capture, organize, and develop your ideas.
+          Discover how BuildFolio transforms the way you capture, organize, and
+          develop your ideas.
         </motion.p>
       </div>
 
@@ -86,7 +83,11 @@ const Features = () => {
             animate={svgControls}
             className="w-full h-full transition-transform duration-300 ease-out"
           >
-            <img src={resumebenefitSVG} alt="Benefits" className="w-full h-full object-contain" />
+            <img
+              src={resumebenefitSVG}
+              alt="Benefits"
+              className="w-full h-full object-contain"
+            />
           </motion.div>
         </div>
       </motion.div>
@@ -120,10 +121,15 @@ const Features = () => {
                 >
                   <Globe className="w-6 h-6 text-blue-600 dark:text-blue-400" />
                 </motion.div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">Access Anywhere</h3>
-                <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-4">Work from any device</p>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                  Access Anywhere
+                </h3>
+                <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-4">
+                  Work from any device
+                </p>
                 <p className="font-medium text-gray-600 dark:text-gray-300">
-                  Your ideas are with you wherever you go. Cloud-syncing ensures your notes are always up-to-date and accessible.
+                  Your ideas are with you wherever you go. Cloud-syncing ensures
+                  your notes are always up-to-date and accessible.
                 </p>
                 <div className="mt-4">
                   <button className="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline">
@@ -154,10 +160,16 @@ const Features = () => {
                 >
                   <Shield className="w-6 h-6 text-slate-600 dark:text-slate-400" />
                 </motion.div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">Secure by Design</h3>
-                <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-4">Your data is safe</p>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                  Secure by Design
+                </h3>
+                <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-4">
+                  Your data is safe
+                </p>
                 <p className="font-medium text-gray-600 dark:text-gray-300">
-                  We prioritize your privacy with end-to-end encryption and secure data storage, so you can focus on your work with peace of mind.
+                  We prioritize your privacy with end-to-end encryption and
+                  secure data storage, so you can focus on your work with peace
+                  of mind.
                 </p>
                 <div className="mt-4">
                   <button className="inline-flex items-center text-sm font-medium text-slate-600 dark:text-slate-400 hover:underline">
@@ -188,10 +200,16 @@ const Features = () => {
                 >
                   <Sparkles className="w-6 h-6 text-fuchsia-600 dark:text-fuchsia-400" />
                 </motion.div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">Smart Suggestions</h3>
-                <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-4">AI-powered insights</p>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                  Smart Suggestions
+                </h3>
+                <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-4">
+                  AI-powered insights
+                </p>
                 <p className="font-medium text-gray-600 dark:text-gray-300">
-                  Our intelligent engine offers recommendations and connections based on your content — helping you stay ahead with fresh ideas.
+                  Our intelligent engine offers recommendations and connections
+                  based on your content — helping you stay ahead with fresh
+                  ideas.
                 </p>
                 <div className="mt-4">
                   <button className="inline-flex items-center text-sm font-medium text-fuchsia-600 dark:text-fuchsia-400 hover:underline">
@@ -206,8 +224,5 @@ const Features = () => {
       </motion.div>
     </div>
   );
-}
+};
 export default Features;
-
-
-

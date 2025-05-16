@@ -60,7 +60,8 @@ const About: React.FC = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-5xl sm:text-6xl md:text-7xl font-medium mt-16 md:mt-24 text-center"
         >
-          About <span className="text-[var(--color-primary-col)]">Build</span><span className="text-[var(--color-secondary-col)]">Folio</span>
+          About <span className="text-[var(--color-primary-col)]">Build</span>
+          <span className="text-[var(--color-secondary-col)]">Folio</span>
         </motion.h1>
 
         <motion.div
@@ -71,13 +72,21 @@ const About: React.FC = () => {
         >
           <Separator className="mb-8" />
           <p className="text-gray-800 dark:text-gray-200 text-lg md:text-xl leading-relaxed font-medium mb-6">
-            <strong>BuildFolio</strong> is your personalized portfolio platform built to showcase your projects, skills, and achievements in a compelling way. Whether you're a developer, designer, or freelancer, BuildFolio helps you create a professional presence online.
+            <strong>BuildFolio</strong> is your personalized portfolio platform
+            built to showcase your projects, skills, and achievements in a
+            compelling way. Whether you're a developer, designer, or freelancer,
+            BuildFolio helps you create a professional presence online.
           </p>
           <p className="text-gray-800 dark:text-gray-200 text-lg md:text-xl leading-relaxed font-medium mb-6">
-            Our goal is to make it easier for individuals to build and present their portfolio without needing to start from scratch. BuildFolio offers flexible templates, interactive elements, and seamless integration to bring your story to life.
+            Our goal is to make it easier for individuals to build and present
+            their portfolio without needing to start from scratch. BuildFolio
+            offers flexible templates, interactive elements, and seamless
+            integration to bring your story to life.
           </p>
           <p className="text-gray-800 dark:text-gray-200 text-lg md:text-xl leading-relaxed font-medium">
-            Crafted with care and creativity, BuildFolio empowers you to turn your work into an impressive digital profile. Start showcasing what makes you unique and stand out from the crowd!
+            Crafted with care and creativity, BuildFolio empowers you to turn
+            your work into an impressive digital profile. Start showcasing what
+            makes you unique and stand out from the crowd!
           </p>
           <Separator className="mt-8" />
         </motion.div>
@@ -91,7 +100,9 @@ const About: React.FC = () => {
         animate={valuesInView ? "visible" : "hidden"}
         className="mt-24 mx-auto max-w-7xl"
       >
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 px-2 text-center">Our Values</h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-12 px-2 text-center">
+          Our Values
+        </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           {/* Value 1 */}
@@ -101,9 +112,13 @@ const About: React.FC = () => {
                 <Users className="w-6 h-6 text-violet-600 dark:text-violet-400" />
               </div>
               <div>
-                <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">Community First</h3>
+                <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+                  Community First
+                </h3>
                 <p className="text-base md:text-lg font-medium text-gray-600 dark:text-gray-300">
-                  We believe in building a space where creators can share, learn, and grow together. BuildFolio supports collaboration and highlights the power of community.
+                  We believe in building a space where creators can share,
+                  learn, and grow together. BuildFolio supports collaboration
+                  and highlights the power of community.
                 </p>
               </div>
             </div>
@@ -120,7 +135,9 @@ const About: React.FC = () => {
                   Excellence in Design
                 </h3>
                 <p className="text-base md:text-lg font-medium text-gray-600 dark:text-gray-300">
-                  Every portfolio should reflect its creator. That’s why BuildFolio prioritizes clean, beautiful, and modern design to match your professionalism.
+                  Every portfolio should reflect its creator. That’s why
+                  BuildFolio prioritizes clean, beautiful, and modern design to
+                  match your professionalism.
                 </p>
               </div>
             </div>
@@ -137,7 +154,9 @@ const About: React.FC = () => {
                   Passion for Creativity
                 </h3>
                 <p className="text-base md:text-lg font-medium text-gray-600 dark:text-gray-300">
-                  Creativity drives us. From animations to custom sections, BuildFolio encourages you to express your individuality with every click and scroll.
+                  Creativity drives us. From animations to custom sections,
+                  BuildFolio encourages you to express your individuality with
+                  every click and scroll.
                 </p>
               </div>
             </div>
@@ -154,7 +173,9 @@ const About: React.FC = () => {
                   Innovation at Heart
                 </h3>
                 <p className="text-base md:text-lg font-medium text-gray-600 dark:text-gray-300">
-                  BuildFolio is more than a template — it's a dynamic tool built to evolve with you. We strive to stay ahead with the latest in web tech and user experience.
+                  BuildFolio is more than a template — it's a dynamic tool built
+                  to evolve with you. We strive to stay ahead with the latest in
+                  web tech and user experience.
                 </p>
               </div>
             </div>

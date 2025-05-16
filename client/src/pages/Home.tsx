@@ -1,38 +1,46 @@
-import Background from "../assets/transparenthomapage.svg"
-import bannerimgSVG from "../assets/bannerimg.svg"
+import Background from "../assets/transparenthomapage.svg";
+import bannerimgSVG from "../assets/bannerimg.svg";
 
-import { animate, motion, useMotionValue, useTransform } from "motion/react"
-import { useEffect, useState } from "react"
-import { ChevronDown, MoveUpRight, ArrowRight, Users, FileText, Award } from "lucide-react"
-import { Typewriter } from "@/components/Typewritter"
-import MouseHoverEffect from "@/components/MouseHoverEffect"
-import { useCursorStore } from "@/store/useCursorStore"
-import MarqueeAnimation from "@/components/MarqueeAnimation"
+import { animate, motion, useMotionValue, useTransform } from "motion/react";
+import { useEffect, useState } from "react";
+import {
+  ChevronDown,
+  MoveUpRight,
+  ArrowRight,
+  Users,
+  FileText,
+  Award,
+} from "lucide-react";
+import { Typewriter } from "@/components/Typewritter";
+import MouseHoverEffect from "@/components/MouseHoverEffect";
+import { useCursorStore } from "@/store/useCursorStore";
+import MarqueeAnimation from "@/components/MarqueeAnimation";
+import { Link } from "react-router";
 
 const Home = () => {
-  const { handleMouseEnter, handleMouseLeave } = useCursorStore()
-  const [scrolled, setScrolled] = useState(false)
+  const { handleMouseEnter, handleMouseLeave } = useCursorStore();
+  const [scrolled, setScrolled] = useState(false);
 
-  const count = useMotionValue(0)
-  const rounded = useTransform(() => Math.round(count.get()))
-  const displayText = useTransform(rounded, (val) => `${val}+`)
+  const count = useMotionValue(0);
+  const rounded = useTransform(() => Math.round(count.get()));
+  const displayText = useTransform(rounded, (val) => `${val}+`);
 
-  const [isHoveredStates, setIsHoveredStates] = useState({})
-  const [hoveredIndices, setHoveredIndices] = useState({})
+  const [isHoveredStates, setIsHoveredStates] = useState({});
+  const [hoveredIndices, setHoveredIndices] = useState({});
 
   useEffect(() => {
-    const controls = animate(count, 100, { duration: 5 })
+    const controls = animate(count, 100, { duration: 5 });
 
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
-    }
+      setScrolled(window.scrollY > 50);
+    };
 
-    window.addEventListener("scroll", handleScroll)
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      controls.stop()
-      window.removeEventListener("scroll", handleScroll)
-    }
-  }, [])
+      controls.stop();
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <>
@@ -58,19 +66,21 @@ const Home = () => {
         <motion.div
           className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 flex flex-col items-center"
           animate={{
-            y: scrolled ? 0 : [0, 10, 0], 
+            y: scrolled ? 0 : [0, 10, 0],
             opacity: scrolled ? 0 : 1,
           }}
           transition={{
             y: {
-              repeat: scrolled ? 0 : Number.POSITIVE_INFINITY, 
+              repeat: scrolled ? 0 : Number.POSITIVE_INFINITY,
               duration: 1.5,
               ease: "easeInOut",
             },
             opacity: { duration: 0.3 },
           }}
         >
-          <span className="text-lg font-semibold mb-2 text-gray-800 dark:text-white">Scroll to explore</span>
+          <span className="text-lg font-semibold mb-2 text-gray-800 dark:text-white">
+            Scroll to explore
+          </span>
           <ChevronDown className="w-5 h-5 text-gray-800 dark:text-white" />
         </motion.div>
 
@@ -102,8 +112,12 @@ const Home = () => {
                   }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 >
-                  <motion.div className="text-2xl md:text-3xl font-bold">{displayText}</motion.div>
-                  <span className="text-sm md:text-lg font-semibold mt-1">Resumes Made</span>
+                  <motion.div className="text-2xl md:text-3xl font-bold">
+                    {displayText}
+                  </motion.div>
+                  <span className="text-sm md:text-lg font-semibold mt-1">
+                    Resumes Made
+                  </span>
                 </motion.div>
 
                 <div className="flex flex-col mx-2.5 mt-3">
@@ -113,24 +127,26 @@ const Home = () => {
                     Level Up Your Resume with AI
                   </span>
 
-                  <motion.button
-                    className="mt-1.5 text-base font-semibold flex items-center space-x-2 text-[var(--color-secondary-col)] group cursor-pointer leading-tight"
-                    whileHover={{ x: 5 }}
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
-                  >
-                    <span className="underline">Watch Demo</span>
-                    <motion.div
-                      animate={{ x: [0, 5, 0] }}
-                      transition={{
-                        repeat: Number.POSITIVE_INFINITY,
-                        duration: 1.5,
-                        ease: "easeInOut",
-                      }}
+                  <Link to="/howitworks">
+                    <motion.button
+                      className="mt-1.5 text-base font-semibold flex items-center space-x-2 text-[var(--color-secondary-col)] group cursor-pointer leading-tight"
+                      whileHover={{ x: 5 }}
+                      onMouseEnter={handleMouseEnter}
+                      onMouseLeave={handleMouseLeave}
                     >
-                      <MoveUpRight className="w-4 h-4" />
-                    </motion.div>
-                  </motion.button>
+                      <span className="underline">Watch Demo</span>
+                      <motion.div
+                        animate={{ x: [0, 5, 0] }}
+                        transition={{
+                          repeat: Number.POSITIVE_INFINITY,
+                          duration: 1.5,
+                          ease: "easeInOut",
+                        }}
+                      >
+                        <MoveUpRight className="w-4 h-4" />
+                      </motion.div>
+                    </motion.button>
+                  </Link>
                 </div>
               </motion.div>
             </span>
@@ -145,7 +161,10 @@ const Home = () => {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            <div className="relative w-full" style={{ height: "650px", maxWidth: "500px" }}>
+            <div
+              className="relative w-full"
+              style={{ height: "650px", maxWidth: "500px" }}
+            >
               {/* Main image */}
               <motion.img
                 src={bannerimgSVG}
@@ -158,8 +177,20 @@ const Home = () => {
 
               {/* Interactive colored elements */}
               {[
-                { color: "#F87171", size: "w-16 h-16", position: "-top-6 -left-6", delay: 0.2, label: "Templates" },
-                { color: "#4ADE80", size: "w-20 h-20", position: "top-1/4 -right-8", delay: 0.3, label: "AI Writer" },
+                {
+                  color: "#F87171",
+                  size: "w-16 h-16",
+                  position: "-top-6 -left-6",
+                  delay: 0.2,
+                  label: "Templates",
+                },
+                {
+                  color: "#4ADE80",
+                  size: "w-20 h-20",
+                  position: "top-1/4 -right-8",
+                  delay: 0.3,
+                  label: "AI Writer",
+                },
                 {
                   color: "#C084FC",
                   size: "w-24 h-24",
@@ -167,10 +198,22 @@ const Home = () => {
                   delay: 0.4,
                   label: "Customize",
                 },
-                { color: "#FACC15", size: "w-16 h-16", position: "bottom-10 right-10", delay: 0.5, label: "Export" },
-                { color: "#FB923C", size: "w-14 h-14", position: "-bottom-5 left-1/4", delay: 0.6, label: "Share" },
+                {
+                  color: "#FACC15",
+                  size: "w-16 h-16",
+                  position: "bottom-10 right-10",
+                  delay: 0.5,
+                  label: "Export",
+                },
+                {
+                  color: "#FB923C",
+                  size: "w-14 h-14",
+                  position: "-bottom-5 left-1/4",
+                  delay: 0.6,
+                  label: "Share",
+                },
               ].map((item, index) => {
-                const isHovered = hoveredIndices[index] || false
+                const isHovered = hoveredIndices[index] || false;
 
                 return (
                   <motion.div
@@ -190,10 +233,13 @@ const Home = () => {
                       boxShadow: "0 10px 25px rgba(0,0,0,0.15)",
                     }}
                     onHoverStart={() => {
-                      setHoveredIndices((prev) => ({ ...prev, [index]: true }))
+                      setHoveredIndices((prev) => ({ ...prev, [index]: true }));
                     }}
                     onHoverEnd={() => {
-                      setHoveredIndices((prev) => ({ ...prev, [index]: false }))
+                      setHoveredIndices((prev) => ({
+                        ...prev,
+                        [index]: false,
+                      }));
                     }}
                   >
                     <motion.div
@@ -202,20 +248,26 @@ const Home = () => {
                       animate={{ opacity: isHovered ? 1 : 0 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <span className="text-xs font-medium text-white text-center">{item.label}</span>
+                      <span className="text-xs font-medium text-white text-center">
+                        {item.label}
+                      </span>
                       <div className="mt-1">
                         <MoveUpRight className="w-3 h-3 text-white" />
                       </div>
                     </motion.div>
                   </motion.div>
-                )
+                );
               })}
 
               {/* Floating animation for the entire image */}
               <motion.div
                 className="absolute inset-0 rounded-2xl"
                 animate={{
-                  boxShadow: ["0 0 0 rgba(0,0,0,0)", "0 20px 60px rgba(0,0,0,0.1)", "0 0 0 rgba(0,0,0,0)"],
+                  boxShadow: [
+                    "0 0 0 rgba(0,0,0,0)",
+                    "0 20px 60px rgba(0,0,0,0.1)",
+                    "0 0 0 rgba(0,0,0,0)",
+                  ],
                 }}
                 transition={{
                   duration: 3,
@@ -266,8 +318,8 @@ const Home = () => {
               transition={{ duration: 0.5, delay: 0.3 }}
               viewport={{ once: true }}
             >
-              Our AI-powered platform transforms your professional experience into a compelling resume that gets noticed
-              by employers.
+              Our AI-powered platform transforms your professional experience
+              into a compelling resume that gets noticed by employers.
             </motion.p>
           </motion.div>
 
@@ -277,21 +329,24 @@ const Home = () => {
               {
                 icon: <FileText className="w-8 h-8" />,
                 title: "Smart Templates",
-                description: "Choose from dozens of ATS-optimized templates designed by hiring professionals.",
+                description:
+                  "Choose from dozens of ATS-optimized templates designed by hiring professionals.",
                 color: "#F87171",
                 delay: 0.1,
               },
               {
                 icon: <Award className="w-8 h-8" />,
                 title: "AI Resume Enhancement",
-                description: "Our AI analyzes and enhances your resume to highlight your strengths and achievements.",
+                description:
+                  "Our AI analyzes and enhances your resume to highlight your strengths and achievements.",
                 color: "#4ADE80",
                 delay: 0.2,
               },
               {
                 icon: <Users className="w-8 h-8" />,
                 title: "Industry Insights",
-                description: "Get personalized recommendations based on your industry and career level.",
+                description:
+                  "Get personalized recommendations based on your industry and career level.",
                 color: "#C084FC",
                 delay: 0.3,
               },
@@ -320,13 +375,15 @@ const Home = () => {
                 </motion.div>
                 <h3 className="text-2xl font-bold mb-3">{feature.title}</h3>
                 <p className="text-gray-600 mb-6">{feature.description}</p>
-                <motion.button
-                  className="flex items-center text-[var(--color-secondary-col)] font-medium"
-                  whileHover={{ x: 5 }}
-                >
-                  <span className="mr-2">Learn more</span>
-                  <ArrowRight className="w-4 h-4" />
-                </motion.button>
+                <Link to="/features">
+                  <motion.button
+                    className="flex items-center text-[var(--color-secondary-col)] font-medium"
+                    whileHover={{ x: 5 }}
+                  >
+                    <span className="mr-2">Learn more</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </motion.button>
+                </Link>
               </motion.div>
             ))}
           </div>
@@ -385,7 +442,12 @@ const Home = () => {
                     className="absolute -bottom-5 -right-5 bg-white rounded-xl p-3 shadow-lg"
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 10, delay: 0.4 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 400,
+                      damping: 10,
+                      delay: 0.4,
+                    }}
                     viewport={{ once: true }}
                   >
                     <div className="flex space-x-1">
@@ -427,13 +489,18 @@ const Home = () => {
                   transition={{ duration: 0.5, delay: 0.4 }}
                   viewport={{ once: true }}
                 >
-                  "After struggling for months to get interviews, I used this platform to rebuild my resume. Within two
-                  weeks, I had three interview requests from top companies in my industry. The AI suggestions were
-                  spot-on for my field."
+                  "After struggling for months to get interviews, I used this
+                  platform to rebuild my resume. Within two weeks, I had three
+                  interview requests from top companies in my industry. The AI
+                  suggestions were spot-on for my field."
                 </motion.p>
                 <div>
-                  <h4 className="text-xl font-bold text-black">Sarah Johnson</h4>
-                  <p className="text-gray-600">Senior Product Manager at TechCorp</p>
+                  <h4 className="text-xl font-bold text-black">
+                    Sarah Johnson
+                  </h4>
+                  <p className="text-gray-600">
+                    Senior Product Manager at TechCorp
+                  </p>
                 </div>
               </motion.div>
             </div>
@@ -457,7 +524,8 @@ const Home = () => {
               Ready to transform your resume?
             </motion.h3>
             <motion.p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-              Join thousands of professionals who've accelerated their job search with our AI-powered platform.
+              Join thousands of professionals who've accelerated their job
+              search with our AI-powered platform.
             </motion.p>
             <motion.div
               className="flex flex-col sm:flex-row gap-4 justify-center"
@@ -466,17 +534,20 @@ const Home = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <motion.button
-                className="px-8 py-4 bg-[var(--color-secondary-col)] text-white rounded-xl font-semibold shadow-lg hover:shadow-xl flex items-center justify-center space-x-2"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-              >
-                <span className="dark:text-black">Get Started Free</span>
-                <ArrowRight className="w-5 h-5 dark:text-black" />
-              </motion.button>
+              <Link to="/login">
+                <motion.button
+                  className="px-8 py-4 bg-[var(--color-secondary-col)] text-white rounded-xl font-semibold shadow-lg hover:shadow-xl flex items-center justify-center space-x-2"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <span className="dark:text-black">Get Started Free</span>
+                  <ArrowRight className="w-5 h-5 dark:text-black" />
+                </motion.button>
+              </Link>
+
               {/* <motion.button
                 className="px-8 py-4 border-2 border-gray-300 rounded-xl font-semibold hover:border-gray-400 flex items-center justify-center space-x-2"
                 whileHover={{ scale: 1.05 }}
@@ -525,7 +596,8 @@ const Home = () => {
               transition={{ duration: 0.5, delay: 0.3 }}
               viewport={{ once: true }}
             >
-              Create a professional resume in minutes with our easy three-step process
+              Create a professional resume in minutes with our easy three-step
+              process
             </motion.p>
           </motion.div>
 
@@ -582,7 +654,9 @@ const Home = () => {
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 >
-                  <div className="text-white text-2xl font-bold">{step.step}</div>
+                  <div className="text-white text-2xl font-bold">
+                    {step.step}
+                  </div>
                 </motion.div>
                 <h3 className="text-2xl font-bold mb-3">{step.title}</h3>
                 <p className="text-gray-600">{step.description}</p>
@@ -624,7 +698,8 @@ const Home = () => {
               transition={{ duration: 0.5, delay: 0.3 }}
               viewport={{ once: true }}
             >
-              Choose the plan that fits your needs. All plans include access to our AI resume enhancement tools.
+              Choose the plan that fits your needs. All plans include access to
+              our AI resume enhancement tools.
             </motion.p>
           </motion.div>
 
@@ -634,7 +709,13 @@ const Home = () => {
                 name: "Basic",
                 price: "Free",
                 description: "Perfect for creating a single resume",
-                features: ["1 Resume", "5 Templates", "Basic AI Enhancement", "PDF Export", "Email Support"],
+                features: [
+                  "1 Resume",
+                  "5 Templates",
+                  "Basic AI Enhancement",
+                  "PDF Export",
+                  "Email Support",
+                ],
                 cta: "Get Started",
                 popular: false,
                 color: "#F3F4F6",
@@ -700,10 +781,16 @@ const Home = () => {
                     Most Popular
                   </div>
                 )}
-                <h3 className="text-2xl font-bold mb-2 dark:text-black">{plan.name}</h3>
+                <h3 className="text-2xl font-bold mb-2 dark:text-black">
+                  {plan.name}
+                </h3>
                 <div className="flex items-end mb-4">
-                  <span className="text-4xl font-bold dark:text-black">{plan.price}</span>
-                  {plan.period && <span className="text-gray-600 ml-1 ">{plan.period}</span>}
+                  <span className="text-4xl font-bold dark:text-black">
+                    {plan.price}
+                  </span>
+                  {plan.period && (
+                    <span className="text-gray-600 ml-1 ">{plan.period}</span>
+                  )}
                 </div>
                 <p className="text-gray-600 mb-6 ">{plan.description}</p>
                 <ul className="space-y-3 mb-8">
@@ -713,7 +800,10 @@ const Home = () => {
                       className="flex items-center"
                       initial={{ opacity: 0, x: -10 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.3, delay: plan.delay + 0.1 + featureIndex * 0.05 }}
+                      transition={{
+                        duration: 0.3,
+                        delay: plan.delay + 0.1 + featureIndex * 0.05,
+                      }}
                       viewport={{ once: true }}
                     >
                       <svg
@@ -723,7 +813,12 @@ const Home = () => {
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M5 13l4 4L19 7"
+                        ></path>
                       </svg>
                       <span className="dark:text-black">{feature}</span>
                     </motion.li>
@@ -886,7 +981,12 @@ const Home = () => {
                   className="text-5xl font-bold mb-2 bg-clip-text text-transparent dark:text-black bg-gradient-to-r from-[var(--color-secondary-col)] to-[var(--color-purple-col)]"
                   initial={{ scale: 0.8 }}
                   whileInView={{ scale: 1 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 10, delay: stat.delay + 0.2 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 10,
+                    delay: stat.delay + 0.2,
+                  }}
                   viewport={{ once: true }}
                 >
                   {stat.value}
@@ -898,7 +998,7 @@ const Home = () => {
         </div>
       </motion.section>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
