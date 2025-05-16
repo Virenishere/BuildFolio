@@ -292,7 +292,7 @@ const HowItWorks = () => {
         <h2 className="text-2xl md:text-3xl font-bold mb-6">Ready to transform how you capture ideas?</h2>
         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
           <Link to="/signup">
-          <button className="inline-flex items-center justify-center rounded-md bg-gray-800 hover:bg-gray-900  px-4 py-2 text-sm font-medium text-white shadow transition-colors h-10 cursor-pointer">
+          <button className="inline-flex items-center justify-center rounded-md bg-[var(--color-primary-col)] hover:bg-[var(--color-primary-col-hover)] px-4 py-2 text-sm font-medium text-white shadow transition-colors h-10 cursor-pointer">
             Get Started Now <ArrowRight className="ml-2 h-4 w-4" />
           </button>
           </Link>

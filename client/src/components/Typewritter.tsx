@@ -27,9 +27,9 @@ export const Typewriter: React.FC<TypewriterProps> = ({ text, ...rest }) => (
     {text.split("").map((char, i) => {
       let className = "";
 
-      if (i >= 0 && i <= 5) className = "text-[var(--color-secondary-col)]"; // CREATE
-      else if (i >= 7 && i <= 10) className = "text-black"; // YOUR
-      else if (i >= 12) className = "text-[var(--color-secondary-col)]"; // RESUME
+      if (i >= 0 && i <= 5) className = "text-[var(--color-secondary-col)] dark:text-[var(--color-secondary-col)]"; // CREATE
+      else if (i >= 7 && i <= 10) className = "text-black dark:text-white"; // YOUR
+      else if (i >= 12) className = "text-[var(--color-secondary-col)] dark:text-var(--color-secondary-col)"; // RESUME
 
       return (
         <React.Fragment key={`${char}-${i}`}>

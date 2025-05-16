@@ -9,8 +9,6 @@ import MouseHoverEffect from "@/components/MouseHoverEffect"
 import { useCursorStore } from "@/store/useCursorStore"
 import MarqueeAnimation from "@/components/MarqueeAnimation"
 
-
-
 const Home = () => {
   const { handleMouseEnter, handleMouseLeave } = useCursorStore()
   const [scrolled, setScrolled] = useState(false)
@@ -48,7 +46,7 @@ const Home = () => {
 
         <motion.img
           src={Background}
-          className="absolute top-0 left-0 w-full h-100vh object-cover z-0 rounded-b-4xl border-b-1  shadow-lg"
+          className="absolute top-0 left-0 w-full h-100vh object-cover z-0 rounded-b-4xl border-b-1 border-white shadow-lg"
           alt="background"
           draggable="false"
           initial={{ scale: 1.1 }}
@@ -60,20 +58,20 @@ const Home = () => {
         <motion.div
           className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 flex flex-col items-center"
           animate={{
-            y: scrolled ? 0 : [0, 10, 0], // Only animate y when not scrolled
-            opacity: scrolled ? 0 : 1, // Hide when scrolled
+            y: scrolled ? 0 : [0, 10, 0], 
+            opacity: scrolled ? 0 : 1,
           }}
           transition={{
             y: {
-              repeat: scrolled ? 0 : Number.POSITIVE_INFINITY, // Stop repeating when scrolled
+              repeat: scrolled ? 0 : Number.POSITIVE_INFINITY, 
               duration: 1.5,
               ease: "easeInOut",
             },
             opacity: { duration: 0.3 },
           }}
         >
-          <span className="text-lg font-semibold mb-2 text-gray-800">Scroll to explore</span>
-          <ChevronDown className="w-5 h-5 text-gray-800" />
+          <span className="text-lg font-semibold mb-2 text-gray-800 dark:text-white">Scroll to explore</span>
+          <ChevronDown className="w-5 h-5 text-gray-800 dark:text-white" />
         </motion.div>
 
         {/* first page - banner */}
@@ -85,7 +83,7 @@ const Home = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <span
-              className="text-8xl font-semibold leading-tight"
+              className="text-8xl font-semibold leading-tight dark:-"
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
@@ -237,7 +235,7 @@ const Home = () => {
 
       {/* New modern component below marquee */}
       <motion.section
-        className="py-24 px-16 bg-gradient-to-b from-white to-gray-50"
+        className="py-24 px-16"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -300,7 +298,7 @@ const Home = () => {
             ].map((feature, index) => (
               <motion.div
                 key={index}
-                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300"
+                className="rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border-1 dark:border-white"
                 initial={{ y: 50, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, delay: feature.delay }}
@@ -335,7 +333,7 @@ const Home = () => {
 
           {/* Testimonial section */}
           <motion.div
-            className="bg-gradient-to-r from-purple-50 to-blue-50 rounded-3xl p-12 relative overflow-hidden"
+            className="bg-gradient-to-r from-purple-50 to-blue-50 dark:bg-gradient-to-r from-blue-600 from to-sky-500 rounded-3xl p-12 relative overflow-hidden"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
@@ -434,7 +432,7 @@ const Home = () => {
                   spot-on for my field."
                 </motion.p>
                 <div>
-                  <h4 className="text-xl font-bold">Sarah Johnson</h4>
+                  <h4 className="text-xl font-bold text-black">Sarah Johnson</h4>
                   <p className="text-gray-600">Senior Product Manager at TechCorp</p>
                 </div>
               </motion.div>
@@ -476,8 +474,8 @@ const Home = () => {
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
-                <span>Get Started Free</span>
-                <ArrowRight className="w-5 h-5" />
+                <span className="dark:text-black">Get Started Free</span>
+                <ArrowRight className="w-5 h-5 dark:text-black" />
               </motion.button>
               {/* <motion.button
                 className="px-8 py-4 border-2 border-gray-300 rounded-xl font-semibold hover:border-gray-400 flex items-center justify-center space-x-2"
@@ -497,7 +495,7 @@ const Home = () => {
 
       {/* How It Works Section */}
       <motion.section
-        className="py-24 px-16 bg-white"
+        className="py-24 px-16"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -596,7 +594,7 @@ const Home = () => {
 
       {/* Pricing Section */}
       <motion.section
-        className="py-24 px-16 bg-gradient-to-b from-gray-50 to-white"
+        className="py-24 px-16 "
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -683,8 +681,8 @@ const Home = () => {
                 key={index}
                 className={`rounded-2xl p-8 ${
                   plan.popular
-                    ? "bg-gradient-to-br from-purple-50 to-indigo-50 border-2 border-[var(--color-purple-col)] shadow-xl relative z-10 md:-mt-4 md:-mb-4"
-                    : "bg-white border border-gray-200 shadow-lg"
+                    ? "bg-gradient-to-br from-purple-50 to-indigo-50 dark:bg-gradient-to-br from-purple-400 to-indigo-300 border-2 border-[var(--color-purple-col)] shadow-xl relative z-10 md:-mt-4 md:-mb-4"
+                    : "bg-white dark:bg-slate-400 border border-gray-200 shadow-lg"
                 }`}
                 initial={{ y: 50, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
@@ -698,16 +696,16 @@ const Home = () => {
                 onMouseLeave={handleMouseLeave}
               >
                 {plan.popular && (
-                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[var(--color-purple-col)] text-white px-4 py-1 rounded-full text-sm font-semibold">
+                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[var(--color-purple-col)] text-white dark:text-black px-4 py-1 rounded-full text-sm font-semibold">
                     Most Popular
                   </div>
                 )}
-                <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
+                <h3 className="text-2xl font-bold mb-2 dark:text-black">{plan.name}</h3>
                 <div className="flex items-end mb-4">
-                  <span className="text-4xl font-bold">{plan.price}</span>
-                  {plan.period && <span className="text-gray-600 ml-1">{plan.period}</span>}
+                  <span className="text-4xl font-bold dark:text-black">{plan.price}</span>
+                  {plan.period && <span className="text-gray-600 ml-1 ">{plan.period}</span>}
                 </div>
-                <p className="text-gray-600 mb-6">{plan.description}</p>
+                <p className="text-gray-600 mb-6 ">{plan.description}</p>
                 <ul className="space-y-3 mb-8">
                   {plan.features.map((feature, featureIndex) => (
                     <motion.li
@@ -727,14 +725,14 @@ const Home = () => {
                       >
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
                       </svg>
-                      <span>{feature}</span>
+                      <span className="dark:text-black">{feature}</span>
                     </motion.li>
                   ))}
                 </ul>
                 <motion.button
                   className={`w-full py-3 rounded-xl font-semibold ${
                     plan.popular
-                      ? "bg-[var(--color-secondary-col)] text-white"
+                      ? "bg-[var(--color-secondary-col)] text-white dark:text-black"
                       : "bg-gray-100 text-gray-800 hover:bg-gray-200"
                   }`}
                   whileHover={{ scale: 1.03 }}
@@ -750,7 +748,7 @@ const Home = () => {
 
       {/* FAQ Section */}
       <motion.section
-        className="py-24 px-16 bg-white"
+        className="py-24 px-16"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -860,7 +858,7 @@ const Home = () => {
 
       {/* Stats Section */}
       <motion.section
-        className="py-24 px-16 bg-gradient-to-r from-purple-50 to-indigo-50"
+        className="py-24 px-16 bg-gradient-to-r from-purple-50 to-indigo-50 dark:bg-gradient-to-r from-blue-600 from to-sky-500"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -885,7 +883,7 @@ const Home = () => {
                 onMouseLeave={handleMouseLeave}
               >
                 <motion.div
-                  className="text-5xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-[var(--color-secondary-col)] to-[var(--color-purple-col)]"
+                  className="text-5xl font-bold mb-2 bg-clip-text text-transparent dark:text-black bg-gradient-to-r from-[var(--color-secondary-col)] to-[var(--color-purple-col)]"
                   initial={{ scale: 0.8 }}
                   whileInView={{ scale: 1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 10, delay: stat.delay + 0.2 }}
@@ -898,7 +896,6 @@ const Home = () => {
             ))}
           </div>
         </div>
-     
       </motion.section>
     </>
   )

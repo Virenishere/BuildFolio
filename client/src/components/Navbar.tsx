@@ -32,7 +32,7 @@ const Navbar = () => {
             <span className="text-[var(--color-primary-col)] dark:text-[var(--color-bg-primary-col)] font-semibold">
               Build
             </span>
-            <span className="text-[var(--color-secondary-col)] font-semibold">
+            <span className="text-[var(--color-secondary-col)]  font-semibold">
               Folio
             </span>
           </span>
@@ -41,24 +41,24 @@ const Navbar = () => {
       <nav className="hidden md:flex items-center space-x-14 text-gray-700 dark:text-gray-200">
         <Link
           to="/howitworks"
-          className="relative group text-[var(--color-primary-col)] hover:text-[var(--color-primary-col-hover)] font-semibold"
+          className="relative group text-[var(--color-primary-col)] dark:text-sky-300 hover:text-[var(--color-primary-col-hover)] font-semibold"
         >
           How it Works
-          <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-gray-500 transition-all group-hover:w-full"></span>
+          <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-gray-500 dark:bg-white transition-all group-hover:w-full"></span>
         </Link>
         <Link
           to="/features"
-          className="relative group text-[var(--color-primary-col)] hover:text-[var(--color-primary-col-hover)] font-semibold"
+          className="relative group text-[var(--color-primary-col)] dark:text-sky-300 hover:text-[var(--color-primary-col-hover)] font-semibold"
         >
           Features
-          <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-gray-500 transition-all group-hover:w-full"></span>
+          <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-gray-500 dark:bg-white transition-all group-hover:w-full"></span>
         </Link>
         <Link
           to="/aboutus"
-          className="relative group text-[var(--color-primary-col)] hover:text-[var(--color-primary-col-hover)] font-semibold"
+          className="relative group text-[var(--color-primary-col)] dark:text-sky-300 hover:text-[var(--color-primary-col-hover)] font-semibold"
         >
           About Us
-          <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-gray-500 transition-all group-hover:w-full"></span>
+          <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-gray-500 dark:bg-white transition-all group-hover:w-full"></span>
         </Link>
       </nav>
 
