@@ -15,8 +15,30 @@ const port = process.env.PORT || 3000;
 // Database connection
 connectDB();
 
+const allowedOrigins = [
+  "https://build-folio.vercel.app/",
+  "http://localhost:8000",
+  "http://localhost:5173", 
+];
+
+
 // Middleware
-app.use(cors());
+// Enable CORS with dynamic origin
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      // Allow requests with no origin (e.g., Postman or curl) test
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 
 // Routes
