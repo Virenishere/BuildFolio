@@ -1,15 +1,22 @@
 "use client"
 
-import { useState } from "react"
+import React, { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { EyeIcon, EyeOffIcon } from "lucide-react"
+import { useNavigate } from "react-router-dom";
+import { instance } from "@/lib/axios"
 
 export function Signup() {
-  const [showPassword, setShowPassword] = useState(false)
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [userName, setUserName] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword)
@@ -19,6 +26,32 @@ export function Signup() {
     setShowConfirmPassword(!showConfirmPassword)
   }
 
+  const handleSubmit = async(e: React.FormEvent) =>{
+    e.preventDefault();
+    console.log("Form is submitted", {email,password,userName});
+    setError("");
+    try{
+      const response = await instance.post("/api/auth/signup",{
+              email,
+              password,
+              userName
+            });
+            console.log("API respose is:",response.data);
+      const { accessToken, user } = response.data;
+      
+      if(!accessToken || !user?.id){
+        throw new Error("No token or user ID received from server");
+      }
+      localStorage.setItem("token", accessToken);
+      localStorage.setItem("userId", user.id);
+       navigate("/dashboard")
+    }catch(error:any){
+      console.error("Api Error", error);
+      const errorMessage = error.message?.data || "Login failed. Please try again.";
+      setError(errorMessage);
+    }
+  }
+
   return (
     <Card>
       <CardHeader>
@@ -26,24 +59,20 @@ export function Signup() {
         <CardDescription>Enter your information to create an account</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="grid grid-cols-2 gap-4">
+        
           <div className="space-y-2">
-            <Label htmlFor="first-name">First name</Label>
-            <Input id="first-name" placeholder="John" />
+            <Label htmlFor="first-name">Username name</Label>
+            <Input id="first-name" placeholder="JohnDoe" value={userName} onChange={(e)=>setUserName(e.target.value)}/>
           </div>
-          <div className="space-y-2">
-            <Label htmlFor="last-name">Last name</Label>
-            <Input id="last-name" placeholder="Doe" />
-          </div>
-        </div>
+        
         <div className="space-y-2">
           <Label htmlFor="signup-email">Email</Label>
-          <Input id="signup-email" type="email" placeholder="m@example.com" />
+          <Input id="signup-email" type="email" placeholder="m@example.com" value={email} onChange={(e)=>setEmail(e.target.value)} />
         </div>
         <div className="space-y-2">
           <Label htmlFor="signup-password">Password</Label>
           <div className="relative">
-            <Input id="signup-password" type={showPassword ? "text" : "password"} placeholder="••••••••" />
+            <Input id="signup-password" type={showPassword ? "text" : "password"} placeholder="••••••••" value={password} onChange={(e)=>setPassword(e.target.value)} />
             <Button
               type="button"
               variant="ghost"
@@ -80,26 +109,10 @@ export function Signup() {
             </Button>
           </div>
         </div>
-        <div className="flex items-center space-x-2">
-          <input
-            type="checkbox"
-            id="terms"
-            className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
-          />
-          <Label htmlFor="terms" className="text-sm font-normal">
-            I agree to the{" "}
-            <a href="#" className="text-primary hover:underline">
-              terms of service
-            </a>{" "}
-            and{" "}
-            <a href="#" className="text-primary hover:underline">
-              privacy policy
-            </a>
-          </Label>
-        </div>
+        
       </CardContent>
       <CardFooter>
-        <Button className="w-full">Create Account</Button>
+        <Button className="w-full" onClick={handleSubmit}>Create Account</Button>
       </CardFooter>
     </Card>
   )

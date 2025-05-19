@@ -2,14 +2,14 @@ import { Routes, Route } from "react-router";
 import { Toaster } from "sonner";
 import Home from "./pages/Home";
 import Dashboard from "./features/dashboard/Dashboard";
-import CustomisedResume from "./features/resume/CustomisedResume";
+import CustomisedResume from "./features/resume/Resume";
 import NotFound from "./pages/NotFound";
 import HowItWorks from "./pages/HowItWorks";
 import Features from "./pages/Features";
 import AboutUs from "./pages/About";
 import PublicLayout from "./layouts/PublicLayout";
 import PrivateLayout from "./layouts/PrivateLayout";
-import Signup from "./pages/Signup";
+// import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 
 const App = () => {
@@ -22,7 +22,7 @@ const App = () => {
       <Route path="/howitworks" element={<HowItWorks />} />
       <Route path="/features" element={<Features/>} />
       <Route path="/aboutus" element={<AboutUs />} />
-      <Route path="/signup" element={<Signup />} />
+      {/* <Route path="/signup" element={<Signup />} /> */}
       <Route path="/login" element={<Login />} />
       </Route>
 

@@ -1,9 +1,23 @@
 import { useEffect, useState } from "react";
-import { Outlet } from "react-router";
+import { Outlet, useNavigate } from "react-router-dom";
 import LoadingSpinner from "@/components/LoadingSpinner";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import  AppSidebar  from "@/components/AppSidebar"
+
 
 const PrivateLayout = () => {
+
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+
+   useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      // Redirect to login if no token is found
+      navigate("/signin");
+    }
+  }, [navigate]);
+
 
   useEffect(() => {
     // Simulate auth check
@@ -23,9 +37,11 @@ const PrivateLayout = () => {
   }
 
   return (
-    <div>
+    <SidebarProvider>
+      <AppSidebar />
+      <SidebarTrigger className="mb-4 cursor-pointer" />
       <Outlet />
-    </div>
+    </SidebarProvider>
   );
 };
 

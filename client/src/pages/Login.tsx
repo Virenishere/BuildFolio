@@ -16,7 +16,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import Signup from "./Signup";
 import { instance } from "@/lib/axios";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -44,13 +44,17 @@ export function Login() {
         password
       });
       console.log("API respose is:",response.data);
-      const {token,user} = response.data;
-      if(!token || !user?.id){
+      const { accessToken, user } = response.data;
+
+      if(!accessToken || !user?.id){
         throw new Error("No token or user ID received from server");
       }
-      localStorage.setItem("token", token);
+      localStorage.setItem("token", accessToken);
       localStorage.setItem("userId", user.id);
+
+
       navigate("/dashboard")
+    
     }catch(error: any){
       console.error("Api Error", error);
       const errorMessage = error.message?.data || "Login failed. Please try again.";
