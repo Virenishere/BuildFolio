@@ -123,7 +123,9 @@ export const gptController = {
         prompt: `${resumeData}\n\n${instruction}`
       });
 
+      // console.log(response)
       const enhancedText = response.data.generated_text || "No response generated";
+      // console.log(enhancedText)
 
       res.status(200).json({
         success: true,
