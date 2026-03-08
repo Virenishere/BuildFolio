@@ -1,15 +1,6 @@
 import React from "react";
-import { motion, Variants } from "framer-motion";
-
-export const sentenceVariants: Variants = {
-  hidden: {},
-  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
-};
-
-export const letterVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { opacity: { duration: 0 } } },
-};
+import { motion } from "framer-motion";
+import { sentenceVariants, letterVariants } from "./typewriterVariants";
 
 interface TypewriterProps extends React.HTMLAttributes<HTMLParagraphElement> {
   text: string;
