@@ -30,7 +30,7 @@ const itemVariants = {
 
 const About: React.FC = () => {
   const teamRef = useRef<HTMLDivElement>(null);
-  const teamInView = useInView(teamRef, { once: false, amount: 0.1 });
+  useInView(teamRef, { once: false, amount: 0.1 });
 
   const valuesRef = useRef<HTMLDivElement>(null);
   const valuesInView = useInView(valuesRef, { once: false, amount: 0.1 });

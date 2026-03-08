@@ -25,7 +25,6 @@ const Home = () => {
   const rounded = useTransform(() => Math.round(count.get()));
   const displayText = useTransform(rounded, (val) => `${val}+`);
 
-  const [isHoveredStates, setIsHoveredStates] = useState({});
   const [hoveredIndices, setHoveredIndices] = useState({});
 
   useEffect(() => {
@@ -40,6 +39,8 @@ const Home = () => {
       controls.stop();
       window.removeEventListener("scroll", handleScroll);
     };
+    // count is a stable MotionValue ref — intentionally omitted from deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
